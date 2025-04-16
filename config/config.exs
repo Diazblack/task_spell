@@ -53,6 +53,8 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
+# Tesla Configuration
+config :tesla, adapter: {Tesla.Adapter.Hackney, [recv_timeout: 30_000]}
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
