@@ -16,19 +16,19 @@ defmodule TaskSpellWeb.TodoListLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Todo list")
+    |> assign(:page_title, "Edit List")
     |> assign(:todo_list, Data.get_todo_list!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Todo list")
+    |> assign(:page_title, "New List")
     |> assign(:todo_list, %TodoList{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Todo lists")
+    |> assign(:page_title, "Todo Lists")
     |> assign(:todo_list, nil)
   end
 
