@@ -18,6 +18,14 @@ defmodule TaskSpellWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    # Todo Lists Routes
+    live "/todo_lists", TodoListLive.Index, :index
+    live "/todo_lists/new", TodoListLive.Index, :new
+    live "/todo_lists/:id/edit", TodoListLive.Index, :edit
+
+    live "/todo_lists/:id", TodoListLive.Show, :show
+    live "/todo_lists/:id/show/edit", TodoListLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
