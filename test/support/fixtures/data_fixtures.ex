@@ -18,4 +18,22 @@ defmodule TaskSpell.DataFixtures do
 
     todo_list
   end
+
+  @doc """
+  Generate a todo_item.
+  """
+  def todo_item_fixture(attrs \\ %{}) do
+    {:ok, todo_item} =
+      attrs
+      |> Enum.into(%{
+        completed_at: ~U[2025-04-16 19:43:00Z],
+        description: "some description",
+        due_at: ~U[2025-04-16 19:43:00Z],
+        is_done: true,
+        title: "some title"
+      })
+      |> TaskSpell.Data.create_todo_item()
+
+    todo_item
+  end
 end
