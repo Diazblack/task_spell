@@ -1,9 +1,8 @@
 <.header>
-  Todo list {@todo_list.id}
-  <:subtitle>This is a todo list record from your database.</:subtitle>
+  Todo List: {@todo_list.title}
   <:actions>
     <.link patch={~p"/todo_lists/#{@todo_list}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit Todo List</.button>
+      <.button>Edit List</.button>
     </.link>
   </:actions>
 </.header>
