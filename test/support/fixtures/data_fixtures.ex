@@ -11,8 +11,8 @@ defmodule TaskSpell.DataFixtures do
     {:ok, todo_list} =
       attrs
       |> Enum.into(%{
-        description: "some description",
-        title: "some title"
+        description: Faker.Commerce.product_name(),
+        title: Faker.Lorem.Shakespeare.romeo_and_juliet()
       })
       |> TaskSpell.Data.create_todo_list()
 
@@ -26,14 +26,18 @@ defmodule TaskSpell.DataFixtures do
     {:ok, todo_item} =
       attrs
       |> Enum.into(%{
-        completed_at: ~U[2025-04-16 19:43:00Z],
-        description: "some description",
-        due_at: ~U[2025-04-16 19:43:00Z],
-        is_done: true,
-        title: "some title"
+        description: Faker.Lorem.Shakespeare.as_you_like_it(),
+        due_at: random_datetime(),
+        completed_at: Enum.random([nil, DateTime.utc_now()]),
+        is_done: Enum.random([true, false]),
+        title: Faker.Lorem.sentence(1)
       })
       |> TaskSpell.Data.create_todo_item()
 
     todo_item
+  end
+
+  defp random_datetime() do
+    Faker.DateTime.between(~U[1985-04-03 10:35:00Z], ~U[2025-04-03 10:35:00Z])
   end
 end

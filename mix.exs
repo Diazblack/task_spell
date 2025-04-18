@@ -59,7 +59,7 @@ defmodule TaskSpell.MixProject do
       {:tesla, "~> 1.11"},
 
       ### Test deps
-
+      {:faker, "~> 0.18", only: :test},
       {:floki, ">= 0.30.0", only: :test},
 
       ### Dev deps

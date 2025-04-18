@@ -21,6 +21,11 @@ defmodule TaskSpell.Data do
     Repo.all(TodoList)
   end
 
+  # def list_todo_lists do
+  #   from(tl in TodoList, preload: [:todo_items])
+  #   |> Repo.all()
+  # end
+
   @doc """
   Gets a single todo_list.
 
