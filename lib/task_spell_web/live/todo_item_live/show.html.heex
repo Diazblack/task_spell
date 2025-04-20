@@ -1,0 +1,11 @@
+<.modal :if={@live_action in [:new, :edit]} id="todo_item-modal" show on_cancel={JS.patch(~p"/todo_lists/#{@todo_item.todo_list_id}")}>
+  <.live_component
+    module={TaskSpellWeb.TodoItemLive.FormComponent}
+    id={@todo_item.id || :new}
+    title={@page_title}
+    action={@live_action}
+    todo_item={@todo_item}
+    tod_item_id={@todo_item.todo_list_id}
+    navigate={~p"/todo_lists/#{@todo_item.todo_list_id}"}
+  />
+</.modal>

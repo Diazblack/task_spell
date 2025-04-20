@@ -1,16 +1,37 @@
 <.header>
   Todo List: {@todo_list.title}
+  <:subtitle>{@todo_list.description}</:subtitle>
   <:actions>
     <.link patch={~p"/todo_lists/#{@todo_list}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit List</.button>
     </.link>
+
   </:actions>
 </.header>
 
-<.list>
-  <:item title="Title">{@todo_list.title}</:item>
-  <:item title="Description">{@todo_list.description}</:item>
-</.list>
+<.header class="mt-10">
+  Items
+  <:actions>
+    <.link patch={~p"/todo_lists/#{@todo_list}/todo_items/new"}>
+      <.button>New Todo Item</.button>
+    </.link>
+  </:actions>
+</.header>
+  <.table 
+    id="todo_items"
+    rows={@todo_list.todo_items}
+  >
+    <:col :let={item} label="Done"> 
+      <%= if item.is_done do %>
+       <%!-- <.icon name="hero-check-solid" class="inline w-4 h-4 text-green-500 ml-2" />
+        --%>
+        ✅
+      <% end %>
+    </:col>
+    <:col :let={item} label="Title">{item.title}</:col>
+    <:col :let={item} label="Description">{item.description}</:col>
+
+  </.table>
 
 <.back navigate={~p"/todo_lists"}>Back to Todo Lists</.back>
 

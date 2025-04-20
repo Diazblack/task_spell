@@ -26,6 +26,9 @@ defmodule TaskSpellWeb.Router do
 
     live "/todo_lists/:id", TodoListLive.Show, :show
     live "/todo_lists/:id/show/edit", TodoListLive.Show, :edit
+
+    # Todo Items Routes
+    live "/todo_lists/:todo_list_id/todo_items/new", TodoItemLive.Show, :new
   end
 
   # Other scopes may use custom stacks.

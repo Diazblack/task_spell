@@ -40,7 +40,7 @@ defmodule TaskSpell.Data do
       ** (Ecto.NoResultsError)
 
   """
-  def get_todo_list!(id), do: Repo.get!(TodoList, id)
+  def get_todo_list!(id), do: Repo.get!(TodoList, id) |> Repo.preload([:todo_items])
 
   @doc """
   Creates a todo_list.
@@ -151,7 +151,24 @@ defmodule TaskSpell.Data do
 
   """
   def create_todo_item(attrs \\ %{}) do
-    %TodoItem{}
+    create_todo_item(%TodoItem{}, attrs)
+  end
+
+
+  @doc """
+  Creates a todo_item by passing the changeset.
+
+  ## Examples
+
+      iex> create_todo_item(%TodoItem{}, %{field: value})
+      {:ok, %TodoItem{}}
+
+      iex> create_todo_item(nil, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_todo_item(%TodoItem{} = changeset, attrs) do
+    changeset
     |> TodoItem.changeset(attrs)
     |> Repo.insert()
   end

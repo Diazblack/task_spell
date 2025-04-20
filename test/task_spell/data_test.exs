@@ -15,9 +15,15 @@ defmodule TaskSpell.DataTest do
       assert Data.list_todo_lists() == [todo_list]
     end
 
-    test "get_todo_list!/1 returns the todo_list with given id" do
-      todo_list = todo_list_fixture()
-      assert Data.get_todo_list!(todo_list.id) == todo_list
+    test "get_todo_list!/1 returns the todo_list with given id and the preloaded todo_items" do
+      tl = todo_list_fixture()
+      ti1 = todo_item_fixture(%{todo_list_id: tl.id})
+      ti2 = todo_item_fixture(%{todo_list_id: tl.id})
+      ti3 = todo_item_fixture(%{todo_list_id: tl.id})
+      ti4 = todo_item_fixture(%{todo_list_id: tl.id})
+      db_tl = Data.get_todo_list!(tl.id)
+      assert db_tl.id == tl.id
+      assert assert db_tl.todo_items == [ti1, ti2, ti3, ti4]
     end
 
     test "create_todo_list/1 with valid data creates a todo_list" do
@@ -44,7 +50,9 @@ defmodule TaskSpell.DataTest do
     test "update_todo_list/2 with invalid data returns error changeset" do
       todo_list = todo_list_fixture()
       assert {:error, %Ecto.Changeset{}} = Data.update_todo_list(todo_list, @invalid_attrs)
-      assert todo_list == Data.get_todo_list!(todo_list.id)
+      db_tl = Data.get_todo_list!(todo_list.id)
+      assert todo_list.title == db_tl.title
+      assert todo_list.description == db_tl.description
     end
 
     test "delete_todo_list/1 deletes the todo_list" do
