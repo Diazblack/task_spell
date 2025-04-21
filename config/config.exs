@@ -9,7 +9,7 @@ import Config
 
 config :task_spell,
   ecto_repos: [TaskSpell.Repo],
-  generators: [timestamp_type: :utc_datetime_usec]
+  generators: [api_prefix: "/api/v1", timestamp_type: :utc_datetime_usec]
 
 # Configures the endpoint
 config :task_spell, TaskSpellWeb.Endpoint,
