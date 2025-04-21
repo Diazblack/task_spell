@@ -28,7 +28,7 @@ defmodule TaskSpellWeb.TodoListLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Todo Lists")
+    |> assign(:page_title, "To-do Lists")
     |> assign(:todo_list, nil)
   end
 

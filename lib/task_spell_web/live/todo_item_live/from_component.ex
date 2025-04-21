@@ -59,7 +59,7 @@ defmodule TaskSpellWeb.TodoItemLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Todo Item updated successfully")
+         |> put_flash(:info, "To-do item updated successfully")
          |> push_navigate(to: socket.assigns.navigate)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -74,7 +74,7 @@ defmodule TaskSpellWeb.TodoItemLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Todo Item created successfully")
+         |> put_flash(:info, "To-do item created successfully")
          |> push_navigate(to: socket.assigns.navigate)}
 
       {:error, %Ecto.Changeset{} = changeset} ->

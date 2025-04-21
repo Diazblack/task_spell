@@ -19,7 +19,7 @@ defmodule TaskSpellWeb.TodoListLiveTest do
     test "lists all todo_lists", %{conn: conn, todo_list: todo_list} do
       {:ok, _index_live, html} = live(conn, ~p"/todo_lists")
 
-      assert html =~ "Todo Lists"
+      assert html =~ "To-do Lists"
       assert html =~ todo_list.description
     end
 
@@ -42,7 +42,7 @@ defmodule TaskSpellWeb.TodoListLiveTest do
       assert_patch(index_live, ~p"/todo_lists")
 
       html = render(index_live)
-      assert html =~ "Todo List created successfully"
+      assert html =~ "To-do list created successfully"
       assert html =~ "some description"
     end
 
@@ -65,7 +65,7 @@ defmodule TaskSpellWeb.TodoListLiveTest do
       assert_patch(index_live, ~p"/todo_lists")
 
       html = render(index_live)
-      assert html =~ "Todo List updated successfully"
+      assert html =~ "To-do list updated successfully"
       assert html =~ "some updated description"
     end
 
@@ -106,7 +106,7 @@ defmodule TaskSpellWeb.TodoListLiveTest do
       assert_patch(show_live, ~p"/todo_lists/#{todo_list}")
 
       html = render(show_live)
-      assert html =~ "Todo List updated successfully"
+      assert html =~ "To-do list updated successfully"
       assert html =~ "some updated description"
     end
   end

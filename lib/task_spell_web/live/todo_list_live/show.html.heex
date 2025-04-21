@@ -1,5 +1,5 @@
 <.header>
-  Todo List: {@todo_list.title}
+  To-do List: {@todo_list.title}
   <:subtitle>{@todo_list.description}</:subtitle>
   <:actions>
     <.link patch={~p"/todo_lists/#{@todo_list}/show/edit"} phx-click={JS.push_focus()}>
@@ -13,7 +13,7 @@
   Items
   <:actions>
     <.link patch={~p"/todo_lists/#{@todo_list.id}/todo_items/new"}>
-      <.button>New Todo Item</.button>
+      <.button>New To-do Item</.button>
     </.link>
   </:actions>
 </.header>
@@ -35,7 +35,7 @@
     </:action>
   </.table>
 
-<.back navigate={~p"/todo_lists"}>Back to Todo Lists</.back>
+<.back navigate={~p"/todo_lists"}>Back to To-do Lists</.back>
 
 <.modal :if={@live_action == :edit} id="todo_list-modal" show on_cancel={JS.patch(~p"/todo_lists/#{@todo_list}")}>
   <.live_component

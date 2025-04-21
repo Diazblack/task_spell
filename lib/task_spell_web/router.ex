@@ -19,7 +19,7 @@ defmodule TaskSpellWeb.Router do
 
     get "/", PageController, :home
 
-    # Todo Lists Routes
+    # To-do Lists Routes
     live "/todo_lists", TodoListLive.Index, :index
     live "/todo_lists/new", TodoListLive.Index, :new
     live "/todo_lists/:id/edit", TodoListLive.Index, :edit
@@ -27,7 +27,7 @@ defmodule TaskSpellWeb.Router do
     live "/todo_lists/:id", TodoListLive.Show, :show
     live "/todo_lists/:id/show/edit", TodoListLive.Show, :edit
 
-    # Todo Items Routes
+    # To-do Items Routes
     live "/todo_items/:id", TodoItemLive.Show, :show
     live "/todo_lists/:todo_list_id/todo_items/new", TodoItemLive.Show, :new
     live "/todo_items/:id/show/edit", TodoItemLive.Show, :edit
