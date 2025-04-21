@@ -122,6 +122,20 @@ defmodule TaskSpell.Data do
     Repo.all(TodoItem)
   end
 
+
+  @doc """
+  Returns the list of todo_items by todo_list id.
+
+  ## Examples
+
+      iex> list_todo_items_by_list(id)
+      [%TodoItem{}, ...]
+
+  """
+  def list_todo_items_by_list(todo_list_id) do
+    from(ti in TodoItem, where: ti.todo_list_id == ^todo_list_id)
+    |> Repo.all()
+  end
   @doc """
   Gets a single todo_item.
 
