@@ -20,7 +20,7 @@ defmodule TaskSpellWeb.TodoListLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:title]} type="text" label="Title" />
-        <.input field={@form[:description]} type="text" label="Description" />
+        <.input field={@form[:description]} type="textarea" label="Description" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Todo List</.button>
         </:actions>

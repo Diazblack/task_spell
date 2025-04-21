@@ -20,7 +20,7 @@ defmodule TaskSpellWeb.TodoItemLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:title]} type="text" label="Title" />
-        <.input field={@form[:description]} type="text" label="Description" />
+        <.input field={@form[:description]} type="textarea" label="Description" />
         <.input field={@form[:completed_at]} type="datetime-local" label="Completed at" />
         <.input field={@form[:due_at]} type="datetime-local" label="Due at" />
         <.input field={@form[:is_done]} type="checkbox" label="Checked" />
@@ -79,10 +79,6 @@ defmodule TaskSpellWeb.TodoItemLive.FormComponent do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
-        # {:noreply,
-        # socket
-        # |> put_flash(:info, "Error on Todo Item creation")
-        # |> assign(form: to_form(changeset))}
     end
   end
 

@@ -1,3 +1,19 @@
+<.header :if ={@live_action in [:show]}>
+  {@todo_item.title}
+  <:actions>
+    <.link patch={~p"/todo_items/#{@todo_item}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit Item</.button>
+    </.link>
+    <.link
+      phx-click={JS.push("delete", value: %{id: @todo_item.id})}
+      data-confirm="Are you sure?"
+      navigate={~p"/todo_lists/#{@todo_item.todo_list_id}"}
+    >
+      <.button>Delete Item</.button>
+    </.link>
+  </:actions>
+</.header>
+
 <.modal :if={@live_action in [:new, :edit]} id="todo_item-modal" show on_cancel={JS.patch(~p"/todo_lists/#{@todo_item.todo_list_id}")}>
   <.live_component
     module={TaskSpellWeb.TodoItemLive.FormComponent}
@@ -5,7 +21,16 @@
     title={@page_title}
     action={@live_action}
     todo_item={@todo_item}
-    tod_item_id={@todo_item.todo_list_id}
     navigate={~p"/todo_lists/#{@todo_item.todo_list_id}"}
   />
 </.modal>
+
+<.list>
+  <:item title="Description">{@todo_item.description}</:item>
+  <:item title="Is done">{@todo_item.is_done}</:item>
+  <:item title="Completed at">{@todo_item.completed_at}</:item>
+  <:item title="Due at">{@todo_item.due_at}</:item>
+</.list>
+
+<.back navigate={~p"/todo_lists/#{@todo_item.todo_list_id}"}>Back to the Todo List</.back>
+

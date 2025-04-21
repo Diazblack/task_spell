@@ -83,7 +83,7 @@ defmodule TaskSpellWeb.TodoListLiveTest do
     test "displays todo_list", %{conn: conn, todo_list: todo_list} do
       {:ok, _show_live, html} = live(conn, ~p"/todo_lists/#{todo_list}")
 
-      assert html =~ "Show Todo List"
+      assert html =~ "Show List"
       assert html =~ todo_list.description
     end
 
@@ -91,7 +91,7 @@ defmodule TaskSpellWeb.TodoListLiveTest do
       {:ok, show_live, _html} = live(conn, ~p"/todo_lists/#{todo_list}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
-               "Edit Todo List"
+               "Edit List"
 
       assert_patch(show_live, ~p"/todo_lists/#{todo_list}/show/edit")
 

@@ -16,6 +16,6 @@ defmodule TaskSpellWeb.TodoListLive.Show do
      |> assign(:todo_list, Data.get_todo_list!(id))}
   end
 
-  defp page_title(:show), do: "Show Todo List"
-  defp page_title(:edit), do: "Edit Todo List"
+  defp page_title(:show), do: "Show List"
+  defp page_title(:edit), do: "Edit List"
 end
