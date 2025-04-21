@@ -1,17 +1,39 @@
 <.header>
-  Todo list {@todo_list.id}
-  <:subtitle>This is a todo list record from your database.</:subtitle>
+  Todo List: {@todo_list.title}
+  <:subtitle>{@todo_list.description}</:subtitle>
   <:actions>
     <.link patch={~p"/todo_lists/#{@todo_list}/show/edit"} phx-click={JS.push_focus()}>
-      <.button>Edit Todo List</.button>
+      <.button>Edit List</.button>
     </.link>
+
   </:actions>
 </.header>
 
-<.list>
-  <:item title="Title">{@todo_list.title}</:item>
-  <:item title="Description">{@todo_list.description}</:item>
-</.list>
+<.header class="mt-10">
+  Items
+  <:actions>
+    <.link patch={~p"/todo_lists/#{@todo_list.id}/todo_items/new"}>
+      <.button>New Todo Item</.button>
+    </.link>
+  </:actions>
+</.header>
+  <.table 
+    id="todo_items"
+    rows={@todo_list.todo_items}
+    row_click={fn todo_item -> JS.navigate(~p"/todo_items/#{todo_item}") end}
+  >
+    <:col :let={item} label="Done"> 
+      <%= if item.is_done do %>
+        ✅
+      <% end %>
+    </:col>
+    <:col :let={item} label="Title" >{item.title}</:col>
+    <:action :let={todo_item}>
+      <div class="sr-only">
+        <.link navigate={~p"/todo_items/#{todo_item}"}>Show</.link>
+      </div>
+    </:action>
+  </.table>
 
 <.back navigate={~p"/todo_lists"}>Back to Todo Lists</.back>
 
