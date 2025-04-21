@@ -8,11 +8,6 @@ defmodule TaskSpellWeb.TodoListLiveTest do
   @update_attrs %{description: "some updated description", title: "some updated title"}
   @invalid_attrs %{description: nil, title: nil}
 
-  defp create_todo_list(_) do
-    todo_list = todo_list_fixture()
-    %{todo_list: todo_list}
-  end
-
   describe "Index" do
     setup [:create_todo_list]
 
@@ -109,5 +104,10 @@ defmodule TaskSpellWeb.TodoListLiveTest do
       assert html =~ "To-do list updated successfully"
       assert html =~ "some updated description"
     end
+  end
+
+  defp create_todo_list(_) do
+    todo_list = todo_list_fixture()
+    %{todo_list: todo_list}
   end
 end
