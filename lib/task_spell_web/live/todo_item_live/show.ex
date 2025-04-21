@@ -33,7 +33,7 @@ defmodule TaskSpellWeb.TodoItemLive.Show do
 
     {:noreply,
     socket
-    |> put_flash(:info, "Todo Item successfully deleted")
+    |> put_flash(:info, "To-do Item successfully deleted")
     |> push_navigate(to: socket.assings.navigate)}
   end
 
@@ -42,6 +42,6 @@ defmodule TaskSpellWeb.TodoItemLive.Show do
     {:noreply, stream_insert(socket, :todo_items, todo_item)}
   end
 
-  defp page_title(:show), do: "Show Todo item"
-  defp page_title(:edit), do: "Edit Todo item"
+  defp page_title(:show), do: "Show To-do item"
+  defp page_title(:edit), do: "Edit To-do item"
 end

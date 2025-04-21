@@ -9,7 +9,6 @@ defmodule TaskSpellWeb.TodoListLive.FormComponent do
     <div>
       <.header>
         {@title}
-        <:subtitle>Use this form to manage Todo List records in your database.</:subtitle>
       </.header>
 
       <.simple_form
@@ -22,7 +21,7 @@ defmodule TaskSpellWeb.TodoListLive.FormComponent do
         <.input field={@form[:title]} type="text" label="Title" />
         <.input field={@form[:description]} type="textarea" label="Description" />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Todo List</.button>
+          <.button phx-disable-with="Saving...">Save to-do list</.button>
         </:actions>
       </.simple_form>
     </div>
@@ -56,7 +55,7 @@ defmodule TaskSpellWeb.TodoListLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Todo List updated successfully")
+         |> put_flash(:info, "To-do list updated successfully")
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -71,7 +70,7 @@ defmodule TaskSpellWeb.TodoListLive.FormComponent do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Todo List created successfully")
+         |> put_flash(:info, "To-do list created successfully")
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
