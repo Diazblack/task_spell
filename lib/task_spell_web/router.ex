@@ -33,6 +33,11 @@ defmodule TaskSpellWeb.Router do
     live "/todo_items/:id/show/edit", TodoItemLive.Show, :edit
   end
 
+  scope "/api/v1", TaskSpellWeb.API.V1, as: :api_v1 do
+    pipe_through :api
+
+    resources "/todo_lists", TodoListController, only: ~w[index create show update delete]a
+  end
   # Other scopes may use custom stacks.
   # scope "/api", TaskSpellWeb do
   #   pipe_through :api
