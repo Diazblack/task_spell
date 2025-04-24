@@ -1,6 +1,8 @@
 defmodule TaskSpellWeb.Router do
   use TaskSpellWeb, :router
 
+  import TaskSpellWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule TaskSpellWeb.Router do
     plug :put_root_layout, html: {TaskSpellWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
   end
 
   pipeline :api do
@@ -59,6 +62,44 @@ defmodule TaskSpellWeb.Router do
 
       live_dashboard "/dashboard", metrics: TaskSpellWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
+    end
+  end
+
+  ## Authentication routes
+
+  scope "/", TaskSpellWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    live_session :redirect_if_user_is_authenticated,
+      on_mount: [{TaskSpellWeb.UserAuth, :redirect_if_user_is_authenticated}] do
+      live "/users/register", UserLive.RegistrationLive, :new
+      live "/users/log_in", UserLive.LoginLive, :new
+      live "/users/reset_password", UserLive.ForgotPasswordLive, :new
+      live "/users/reset_password/:token", UserLive.ResetPasswordLive, :edit
+    end
+
+    post "/users/log_in", UserSessionController, :create
+  end
+
+  scope "/", TaskSpellWeb.UserLive do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live_session :require_authenticated_user,
+      on_mount: [{TaskSpellWeb.UserAuth, :ensure_authenticated}] do
+      live "/users/settings", SettingsLive, :edit
+      live "/users/settings/confirm_email/:token", SettingsLive, :confirm_email
+    end
+  end
+
+  scope "/", TaskSpellWeb do
+    pipe_through [:browser]
+
+    delete "/users/log_out", UserSessionController, :delete
+
+    live_session :current_user,
+      on_mount: [{TaskSpellWeb.UserAuth, :mount_current_user}] do
+      live "/users/confirm/:token", UserLive.ConfirmationLive, :edit
+      live "/users/confirm", UserLive.ConfirmationInstructionsLive, :new
     end
   end
 end
