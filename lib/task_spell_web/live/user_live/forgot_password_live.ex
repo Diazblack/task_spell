@@ -1,4 +1,4 @@
-defmodule TaskSpellWeb.UserForgotPasswordLive do
+defmodule TaskSpellWeb.UserLive.ForgotPasswordLive do
   use TaskSpellWeb, :live_view
 
   alias TaskSpell.Accounts

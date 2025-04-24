@@ -72,22 +72,22 @@ defmodule TaskSpellWeb.Router do
 
     live_session :redirect_if_user_is_authenticated,
       on_mount: [{TaskSpellWeb.UserAuth, :redirect_if_user_is_authenticated}] do
-      live "/users/register", UserRegistrationLive, :new
-      live "/users/log_in", UserLoginLive, :new
-      live "/users/reset_password", UserForgotPasswordLive, :new
-      live "/users/reset_password/:token", UserResetPasswordLive, :edit
+      live "/users/register", UserLive.RegistrationLive, :new
+      live "/users/log_in", UserLive.LoginLive, :new
+      live "/users/reset_password", UserLive.ForgotPasswordLive, :new
+      live "/users/reset_password/:token", UserLive.ResetPasswordLive, :edit
     end
 
     post "/users/log_in", UserSessionController, :create
   end
 
-  scope "/", TaskSpellWeb do
+  scope "/", TaskSpellWeb.UserLive do
     pipe_through [:browser, :require_authenticated_user]
 
     live_session :require_authenticated_user,
       on_mount: [{TaskSpellWeb.UserAuth, :ensure_authenticated}] do
-      live "/users/settings", UserSettingsLive, :edit
-      live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+      live "/users/settings", SettingsLive, :edit
+      live "/users/settings/confirm_email/:token", SettingsLive, :confirm_email
     end
   end
 
@@ -98,8 +98,8 @@ defmodule TaskSpellWeb.Router do
 
     live_session :current_user,
       on_mount: [{TaskSpellWeb.UserAuth, :mount_current_user}] do
-      live "/users/confirm/:token", UserConfirmationLive, :edit
-      live "/users/confirm", UserConfirmationInstructionsLive, :new
+      live "/users/confirm/:token", UserLive.ConfirmationLive, :edit
+      live "/users/confirm", UserLive.ConfirmationInstructionsLive, :new
     end
   end
 end

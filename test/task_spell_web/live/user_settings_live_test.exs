@@ -1,4 +1,4 @@
-defmodule TaskSpellWeb.UserSettingsLiveTest do
+defmodule TaskSpellWeb.UserLive.SettingsLiveTest do
   use TaskSpellWeb.ConnCase, async: true
 
   alias TaskSpell.Accounts

@@ -1,4 +1,4 @@
-defmodule TaskSpellWeb.UserConfirmationInstructionsLiveTest do
+defmodule TaskSpellWeb.UserLive.ConfirmationInstructionsLiveTest do
   use TaskSpellWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest

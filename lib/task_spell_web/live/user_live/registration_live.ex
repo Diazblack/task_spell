@@ -1,4 +1,4 @@
-defmodule TaskSpellWeb.UserRegistrationLive do
+defmodule TaskSpellWeb.UserLive.RegistrationLive do
   use TaskSpellWeb, :live_view
 
   alias TaskSpell.Accounts

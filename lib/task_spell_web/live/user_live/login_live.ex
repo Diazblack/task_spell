@@ -1,4 +1,4 @@
-defmodule TaskSpellWeb.UserLoginLive do
+defmodule TaskSpellWeb.UserLive.LoginLive do
   use TaskSpellWeb, :live_view
 
   def render(assigns) do

@@ -1,4 +1,4 @@
-defmodule TaskSpellWeb.UserRegistrationLiveTest do
+defmodule TaskSpellWeb.UserLive.RegistrationLiveTest do
   use TaskSpellWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest

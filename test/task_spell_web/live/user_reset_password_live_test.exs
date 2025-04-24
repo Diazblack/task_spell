@@ -1,4 +1,4 @@
-defmodule TaskSpellWeb.UserResetPasswordLiveTest do
+defmodule TaskSpellWeb.UserLive.ResetPasswordLiveTest do
   use TaskSpellWeb.ConnCase, async: true
 
   import Phoenix.LiveViewTest
